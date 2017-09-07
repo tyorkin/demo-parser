@@ -86,22 +86,22 @@ class UrlProvider implements UrlProviderInterface
             $exceptionCode = BadRequestException::CRITICAL_ERROR;
             throw new BadRequestException($exceptionMessage, $exceptionCode);
         }
-        $ch = curl_init('https://' . $url);
+        $curlRequest = curl_init('https://' . $url);
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, 1);
 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'HEAD');
-        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_setopt($curlRequest, CURLOPT_CUSTOMREQUEST, 'HEAD');
+        curl_setopt($curlRequest, CURLOPT_NOBODY, true);
 
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_VERBOSE, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($curlRequest, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curlRequest, CURLOPT_VERBOSE, 0);
+        curl_setopt($curlRequest, CURLOPT_HEADER, 1);
 
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($curlRequest, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($curlRequest, CURLOPT_TIMEOUT, 15);
+        curl_exec($curlRequest);
 
-        curl_exec($ch);
-
-        $header = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $header = curl_getinfo($curlRequest, CURLINFO_HTTP_CODE);
 
         if ($header === 0) {
             return false;

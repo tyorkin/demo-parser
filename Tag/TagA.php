@@ -17,7 +17,7 @@ class TagA extends Tag implements TagQuantityCountableInterface, TagFindAttribut
      */
     public function getAllTagAttributeValue(string $attributeName, string $pageContent): array
     {
-        $attributesArray = $this->getAllTagAttributeValueByTagNme($this->TAG_NAME, $attributeName, $pageContent);
+        $attributesArray = $this->getAllTagAttributeValueByTagName(self::TAG_NAME, $attributeName, $pageContent);
 
         return $attributesArray;
     }
@@ -27,7 +27,7 @@ class TagA extends Tag implements TagQuantityCountableInterface, TagFindAttribut
      */
     public function getName(): string
     {
-        return $this->TAG_NAME;
+        return self::TAG_NAME;
     }
 
     /**
@@ -35,7 +35,7 @@ class TagA extends Tag implements TagQuantityCountableInterface, TagFindAttribut
      */
     protected function getFindTagPattern(): string
     {
-        return $this->FIND_TAG_PATTERN;
+        return self::FIND_TAG_PATTERN;
     }
 
 }

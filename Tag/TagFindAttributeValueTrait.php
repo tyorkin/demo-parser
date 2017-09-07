@@ -10,7 +10,7 @@ trait TagFindAttributeValueTrait
      * @param string $pageContent
      * @return array
      */
-    public function getAllTagAttributeValueByTagNme(string $tagName, string $attributeName, string $pageContent): array
+    public function getAllTagAttributeValueByTagName(string $tagName, string $attributeName, string $pageContent): array
     {
         $attributesArray = [];
         $regExp = '/<'.$tagName.'.*' . $attributeName . '\s*=\s*["\'](.*)["\'].*>/simU';
