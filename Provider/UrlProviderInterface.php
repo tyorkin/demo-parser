@@ -6,11 +6,11 @@ namespace Tyorkin\DemoParser\Provider;
 interface UrlProviderInterface
 {
     /**
-     * @param string $domain
-     * @param array $links
+     * @param string $domainUrl
+     * @param array $urlList
      * @return array
      */
-    public function findOnlyDomainLinks(string $domain, array $links): array;
+    public function findOnlyDomainLinks(string $domainUrl, array $urlList): array;
 
     /**
      * @param string $url

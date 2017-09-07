@@ -8,29 +8,33 @@ class UrlProvider implements UrlProviderInterface
 {
     /**
      * @param string $domain
-     * @param array $links
+     * @param array $urlList
      * @return array
      */
-    public function findOnlyDomainLinks(string $domain, array $links): array
+    public function findOnlyDomainLinks(string $domainUrl, array $urlList): array
     {
-        $domain = $this->getDomainFromUrl($domain);
-        $correctLinks = [];
-        foreach ($links as $key => $link) {
-            $link = trim($link);
-            /* get rid of PHPSESSID, #linkname, &amp; and javascript: */
-            $link = preg_replace(array('/([\?&]PHPSESSID=\w+)$/i', '/(#[^\/]*)$/i', '/&amp;/', '/^(javascript:.*)/i', '/^(tel:.*)/i', '/^(skype:.*)/i', '/^(viber:.*)/i'), array('', '', '&', ''), $link);
 
-            
-            if (!preg_match("/^http[s]?:\/\/[^\/]*/", $link) && preg_match('/^[\/]?[^\/]+/', $link)) {
-                $baseUrl = $this->normalizeUrl($domain);
-                $link = $this->relativeToAbsolute($baseUrl, $link);
+        $correctLinks = [];
+        $domain = $this->getDomainFromUrl($domainUrl);
+        $domainWithProtocol = $this->normalizeUrl($domain);
+        foreach ($urlList as $key => $url) {
+            $url = trim($url);
+            /* get rid of PHPSESSID, #linkname, &amp; and javascript: */
+            $url = preg_replace(array('/([\?&]PHPSESSID=\w+)$/i', '/(#[^\/]*)$/i', '/&amp;/', '/^(javascript:.*)/i', '/^(tel:.*)/i', '/^(skype:.*)/i', '/^(viber:.*)/i'), array('', '', '&', ''), $url);
+
+
+            if (!preg_match("/^http[s]?:\/\/[^\/]*/", $url) && preg_match('/^[\/]?[^\/]+/', $url)) {
+
+                $baseUrl = strpos($url, '/') === 0 ? $domainWithProtocol : $domainUrl;
+                $url = $this->relativeToAbsolute($baseUrl, $url);
             }
 
             // check if in the same (sub-)$domain
-            if (preg_match("/^http[s]?:\/\/[^\/]*" . str_replace('.', '\.', $domain) . "/i", $link)) {
+
+            if (preg_match("/^http[s]?:\/\/[^\/]*" . str_replace('.', '\.', $domain) . "/i", $url)) {
                 //save the URL
-                if (!in_array($link, $correctLinks)) {
-                    $correctLinks[] = $link;
+                if (!in_array($url, $correctLinks)) {
+                    $correctLinks[] = $url;
                 }
             }
 
@@ -55,7 +59,7 @@ class UrlProvider implements UrlProviderInterface
      * @param string $url
      * @return string
      */
-    public function     normalizeUrl(string $url): string
+    public function normalizeUrl(string $url): string
     {
         $normalizedUrl = ltrim($url, '/');
         // If scheme included, return
