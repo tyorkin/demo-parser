@@ -6,7 +6,7 @@ namespace Tyorkin\DemoParser\Tag;
 class TagImg extends Tag implements TagQuantityCountableInterface
 {
     const FIND_TAG_PATTERN = '/(<img[^>]+>)/simU';
-
+    const TAG_NAME = 'img';
     use TagFindQuantityTrait;
 
     /**
@@ -15,6 +15,14 @@ class TagImg extends Tag implements TagQuantityCountableInterface
     protected function getFindTagPattern(): string
     {
         return self::FIND_TAG_PATTERN;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return self::TAG_NAME;
     }
 
 }

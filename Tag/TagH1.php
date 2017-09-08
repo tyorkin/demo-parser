@@ -9,6 +9,15 @@ class TagH1 extends Tag implements TagTextLengthCalculatedInterface
 
     const FIND_TAG_PATTERN = '/(<h1.*>.+<\/h1>)/simU';
     const FIND_TEXT_IN_TAG_PATTERN = '/<h1.*>(.+)<\/h1>/simU';
+    const TAG_NAME = 'h1';
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return self::TAG_NAME;
+    }
 
     /**
      * @return string

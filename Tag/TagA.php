@@ -11,23 +11,31 @@ class TagA extends Tag implements TagQuantityCountableInterface, TagFindAttribut
     const TAG_NAME = 'a';
 
     /**
-     * @return string
-     */
-    protected function getFindTagPattern(): string
-    {
-        return self::FIND_TAG_PATTERN;
-    }
-
-    /**
      * @param string $attributeName
      * @param string $pageContent
      * @return array
      */
     public function getAllTagAttributeValue(string $attributeName, string $pageContent): array
     {
-        $attributesArray = $this->getAllTagAttributeValueByTagNme(self::TAG_NAME, $attributeName, $pageContent);
+        $attributesArray = $this->getAllTagAttributeValueByTagNme($this->TAG_NAME, $attributeName, $pageContent);
 
         return $attributesArray;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->TAG_NAME;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getFindTagPattern(): string
+    {
+        return $this->FIND_TAG_PATTERN;
     }
 
 }

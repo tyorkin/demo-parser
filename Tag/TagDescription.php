@@ -9,7 +9,15 @@ class TagDescription extends Tag implements TagTextLengthCalculatedInterface
 
     const FIND_TAG_PATTERN = '/(<meta.*name\s*=\s*["\']description["\'].*>)/simU';
     const FIND_TEXT_IN_TAG_PATTERN = '~<\s*meta\s(?=[^>]*?\b(?:name|property|http-equiv)\s*=\s*(?|"\s*description\s*"|\'\s*description\s*\'))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=))[^>]*>~ix';
+    const TAG_NAME = 'description';
 
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return self::TAG_NAME;
+    }
 
     /**
      * @return string
@@ -26,4 +34,6 @@ class TagDescription extends Tag implements TagTextLengthCalculatedInterface
     {
         return self::FIND_TAG_PATTERN;
     }
+
+    
 }

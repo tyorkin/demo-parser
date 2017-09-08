@@ -17,4 +17,6 @@ interface TagInterface
      * @return array
      */
     public function findAll(string $pageContent): array;
+
+    public function getName(): string;
 }

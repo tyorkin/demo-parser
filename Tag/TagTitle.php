@@ -9,7 +9,7 @@ class TagTitle extends Tag implements TagTextLengthCalculatedInterface
 
     const FIND_TAG_PATTERN = '/(<title\s*>.+<\/title>)/simU';
     const FIND_TEXT_IN_TAG_PATTERN = '/<title\s*>(.+)<\/title>/simU';
-
+    const TAG_NAME = 'title';
 
     /**
      * @return string
@@ -25,5 +25,13 @@ class TagTitle extends Tag implements TagTextLengthCalculatedInterface
     protected function getFindTagPattern(): string
     {
         return self::FIND_TAG_PATTERN;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return self::TAG_NAME;
     }
 }
