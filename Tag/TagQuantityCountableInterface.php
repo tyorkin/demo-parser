@@ -1,6 +1,6 @@
 <?php
-namespace Tyorkin\DemoParser\Tag;
 
+namespace Tyorkin\DemoParser\Tag;
 
 interface TagQuantityCountableInterface extends TagInterface
 {

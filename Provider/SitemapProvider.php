@@ -2,7 +2,6 @@
 
 namespace Tyorkin\DemoParser\Provider;
 
-
 class SitemapProvider implements SitemapProviderInterface
 {
     /**
@@ -14,10 +13,10 @@ class SitemapProvider implements SitemapProviderInterface
         $urlList = [];
         $siteMap = new \SimpleXMLElement($siteMapContent);
         foreach ($siteMap->url as $url) {
-            $urlList[] = (string) $url->loc;
+            $urlList[] = (string)$url->loc;
         }
 
-       return $urlList;
+        return $urlList;
     }
 
     /**
@@ -29,7 +28,7 @@ class SitemapProvider implements SitemapProviderInterface
         $sitemapList = [];
         $siteMap = new \SimpleXMLElement($siteMapContent);
         foreach ($siteMap->sitemap as $url) {
-            $sitemapList[] = (string) $url->loc;
+            $sitemapList[] = (string)$url->loc;
         }
 
         return $sitemapList;

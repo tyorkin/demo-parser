@@ -12,17 +12,17 @@ class TagImg extends Tag implements TagQuantityCountableInterface
     /**
      * @return string
      */
-    protected function getFindTagPattern(): string
+    public function getName(): string
     {
-        return self::FIND_TAG_PATTERN;
+        return self::TAG_NAME;
     }
 
     /**
      * @return string
      */
-    public function getName(): string
+    protected function getFindTagPattern(): string
     {
-        return self::TAG_NAME;
+        return self::FIND_TAG_PATTERN;
     }
 
 }

@@ -7,20 +7,27 @@ use Tyorkin\DemoParser\Exception\BadRequestException;
 class UrlProvider implements UrlProviderInterface
 {
     /**
-     * @param string $domain
+     * @param string $domainUrl
      * @param array $urlList
      * @return array
      */
     public function findOnlyDomainLinks(string $domainUrl, array $urlList): array
     {
-
         $correctLinks = [];
         $domain = $this->getDomainFromUrl($domainUrl);
         $domainWithProtocol = $this->normalizeUrl($domain);
         foreach ($urlList as $key => $url) {
             $url = trim($url);
             /* get rid of PHPSESSID, #linkname, &amp; and javascript: */
-            $url = preg_replace(array('/([\?&]PHPSESSID=\w+)$/i', '/(#[^\/]*)$/i', '/&amp;/', '/^(javascript:.*)/i', '/^(tel:.*)/i', '/^(skype:.*)/i', '/^(viber:.*)/i'), array('', '', '&', ''), $url);
+            $url = preg_replace(array(
+                '/([\?&]PHPSESSID=\w+)$/i',
+                '/(#[^\/]*)$/i',
+                '/&amp;/',
+                '/^(javascript:.*)/i',
+                '/^(tel:.*)/i',
+                '/^(skype:.*)/i',
+                '/^(viber:.*)/i'
+            ), array('', '', '&', ''), $url);
 
 
             if (!preg_match("/^http[s]?:\/\/[^\/]*/", $url) && preg_match('/^[\/]?[^\/]+/', $url)) {

@@ -2,7 +2,6 @@
 
 namespace Tyorkin\DemoParser\Tag;
 
-
 interface TagInterface
 {
 

@@ -9,8 +9,6 @@ trait TagFindTextTrait
      * @param string $pageContent
      * @return int
      */
-
-
     public function getAllTagTextLength(string $pageContent): int
     {
         $findTextInTagPattern = $this->getFindTextInTagPattern();

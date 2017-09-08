@@ -2,18 +2,14 @@
 
 namespace Tyorkin\DemoParser\Provider;
 
-
 use Tyorkin\DemoParser\Exception\TagNotFoundException;
 use Tyorkin\DemoParser\Tag\TagFindAttributeInterface;
 use Tyorkin\DemoParser\Tag\TagInitializer;
-use Tyorkin\DemoParser\Tag\TagInterface;
 use Tyorkin\DemoParser\Tag\TagQuantityCountableInterface;
 use Tyorkin\DemoParser\Tag\TagTextLengthCalculatedInterface;
 
 class TagProvider implements TagProviderInterface
 {
-
-
     /**
      * @param string $attributeName
      * @param string $tagName
@@ -27,7 +23,7 @@ class TagProvider implements TagProviderInterface
             /** @var TagFindAttributeInterface $tag */
             $tag = $tagInitializer->getTag($tagName, 'getAllTagAttributeValue');
             $attributeValueArray = $tag->getAllTagAttributeValue($attributeName, $pageContent);
-        } catch (\TagNotFoundException $e) {
+        } catch (TagNotFoundException $e) {
 
             $attributeValueArray = [];
         }
@@ -48,7 +44,7 @@ class TagProvider implements TagProviderInterface
             /** @var TagTextLengthCalculatedInterface $tag */
             $tag = $tagInitializer->getTag($tagName, 'getFirstTagTextLength');
             $count = $tag->getFirstTagTextLength($pageContent);
-        } catch (\TagNotFoundException $e) {
+        } catch (TagNotFoundException $e) {
             $count = 0;
         }
         return $count;
@@ -67,7 +63,7 @@ class TagProvider implements TagProviderInterface
             /** @var TagTextLengthCalculatedInterface $tag */
             $tag = $tagInitializer->getTag($tagName, 'getAllTagTextLength');
             $count = $tag->getAllTagTextLength($pageContent);
-        } catch (\TagNotFoundException $e) {
+        } catch (TagNotFoundException $e) {
 
             $count = 0;
         }
@@ -87,7 +83,7 @@ class TagProvider implements TagProviderInterface
             /** @var TagTextLengthCalculatedInterface $tag */
             $tag = $tagInitializer->getTag($tagName, 'getAllTagTextLengthWithoutSpaces');
             $count = $tag->getAllTagTextLengthWithoutSpaces($pageContent);
-        } catch (\TagNotFoundException $e) {
+        } catch (TagNotFoundException $e) {
             $count = 0;
         }
         return $count;
@@ -106,7 +102,7 @@ class TagProvider implements TagProviderInterface
             /** @var TagQuantityCountableInterface $tag */
             $tag = $tagInitializer->getTag($tagName, 'countQuantity');
             $count = $tag->countQuantity($pageContent);
-        } catch (\TagNotFoundException $e) {
+        } catch (TagNotFoundException $e) {
             $count = 0;
         }
         return $count;

@@ -13,7 +13,7 @@ trait TagFindAttributeValueTrait
     public function getAllTagAttributeValueByTagName(string $tagName, string $attributeName, string $pageContent): array
     {
         $attributesArray = [];
-        $regExp = '/<'.$tagName.'.*' . $attributeName . '\s*=\s*["\'](.*)["\'].*>/simU';
+        $regExp = '/<' . $tagName . '.*' . $attributeName . '\s*=\s*["\'](.*)["\'].*>/simU';
         preg_match_all($regExp, $pageContent, $matches);
         if (is_array($matches) && isset($matches[1])) {
             $attributesArray = $matches[1];

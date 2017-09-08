@@ -35,5 +35,5 @@ class TagDescription extends Tag implements TagTextLengthCalculatedInterface
         return self::FIND_TAG_PATTERN;
     }
 
-    
+
 }

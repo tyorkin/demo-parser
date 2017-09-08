@@ -2,7 +2,6 @@
 
 namespace Tyorkin\DemoParser\Tag;
 
-
 use Tyorkin\DemoParser\Exception\TagNotFoundException;
 
 class TagInitializer
@@ -23,8 +22,8 @@ class TagInitializer
     {
         /** @var TagInterface $tag */
         foreach ($this->tags as $tag) {
-            if ($tag->getName() ==$tagName) {
-                if (!method_exists($tag,$methodName)) {
+            if ($tag->getName() == $tagName) {
+                if (!method_exists($tag, $methodName)) {
                     throw new TagNotFoundException();
                 }
                 return $tag;
